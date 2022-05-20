@@ -59,7 +59,7 @@ Memorypinpai=`sudo dmidecode|grep -P -A20 "Memory\s+Device"|grep Manufacturer |g
 # 系统盘
 systemdisknum=`lsscsi -s | grep "GB" | wc -l`
 # 数据盘
-datadisknum=`lsscsi -s | grep -E "14.0TB|16.0TB" | wc -l`
+datadisknum=`lsscsi -s | grep -E "14.0TB|16.0TB|*TB" | wc -l`
 # NVME盘
 nvmedisknum=`lsblk | grep '^nvme' | wc -l`
 
