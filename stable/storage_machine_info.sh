@@ -14,6 +14,7 @@ if [[ $? -ne 0 ]]; then
 yum -y install smartmontools
 fi
 
+# 判断是否有全局文件
 if [ -f /mnt/shell/global_variable.sh ]; then
         echo "文件检测成功,继续执行......"
 else
@@ -21,6 +22,7 @@ else
         exit
 fi
 
+# 判断是否有硬盘列表
 if [ -f /mnt/shell/disklist.txt ]; then
 	echo "文件检测成功,继续执行......"
 else
