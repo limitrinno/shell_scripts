@@ -18,7 +18,7 @@ fi
 if [ -f /mnt/shell/global_variable.sh ]; then
         echo "文件检测成功,继续执行......"
 else
-        echo "/mnt/shell/global_variable.sh 文件不存在,请下载全局变量并修改{wget -P /mnt/shell http://github.2331314.xyz:5550/https://raw.githubusercontent.com/limitrinno/shell_scripts/master/stable/global_variable.sh}，退出中......"
+        echo "/mnt/shell/global_variable.sh 文件不存在,请下载全局变量并修改{wget -P /mnt/shell http://github.2331314.xyz:5550/https://raw.githubusercontent.com/limitrinno/shell_scripts/test/stable/global_variable.sh}，退出中......"
         exit
 fi
 
@@ -26,7 +26,7 @@ fi
 if [ -f /mnt/shell/disklist.txt ]; then
 	echo "文件检测成功,继续执行......"
 else
-	echo "/mnt/shell/disklist.txt 文件不存在{请执行bash <(curl -sL http://github.2331314.xyz:5550/https://raw.githubusercontent.com/limitrinno/shell_scripts/master/stable/get_storage_disklist.sh)}，退出中......"
+	echo "/mnt/shell/disklist.txt 文件不存在{请执行bash <(curl -sL http://github.2331314.xyz:5550/https://raw.githubusercontent.com/limitrinno/shell_scripts/test/stable/get_storage_disklist.sh)}，退出中......"
         exit
 fi
 
@@ -121,7 +121,7 @@ rm -rf /mnt/shell/smartdisk.tmp
 sed -i s#\'#\"#g /mnt/shell/checkdisk.log
 
 # 信息上传Pushgateway Server
-cat <<EOF | curl --data-binary @- http://121.196.127.74:49091/metrics/job/$job_name/instance/$instance_name
+cat <<EOF | curl --data-binary @- http://120.79.15.130:49091/metrics/job/$job_name/instance/$instance_name
 machine_cpu_info{cpumode="$CPUmode",cpus="$CPUs",cpucores="$CPUCores",cpuproc="$CPUProc",cpumhz="$CPUMHz"} 0
 machine_mem_info{Memzongrongliang="$Memoryzongrongliang",Memshuliang="$Memoryshuliang",Memdanrongliang="$Memorydanrongliang",Mempinlv="$Memorypinlv",Mempinpai="$Memorypinpai"} 0
 machine_produce_info{systeminfo1="$serverinfo1",systeminfo2="$serverinfo2",systemos="$systemos"} 0
@@ -129,7 +129,7 @@ machine_systemdisknum_info{systemdisknum="$systemdisknum",datadisknum="$datadisk
 EOF
 
 # 上传smartctl处理出来的硬盘信息
-curl -XPOST --data-binary @/mnt/shell/checkdisk.log http://121.196.127.74:49091/metrics/job/$job_name/instance/$instance_name
+curl -XPOST --data-binary @/mnt/shell/checkdisk.log http://120.79.15.130:49091/metrics/job/$job_name/instance/$instance_name
 
 
 # 清理smartctl处理出来的硬盘信息
