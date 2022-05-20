@@ -96,6 +96,9 @@ fi
 if [[ $Total_LBAs_Read_v == "" ]]; then
 	Total_LBAs_Read_v=0
 fi
+if [[ $Power_On_Hours_v == "" ]]; then
+	Power_On_Hours_v=0
+fi
 # 计算易理解的值
 Power_On_Hours_expr=$(($Power_On_Hours_v / 24))
 Total_LBAs_Written_expr=$(((((($Total_LBAs_Written_v * 512) / 1024 ) / 1024 ) / 1024)))
