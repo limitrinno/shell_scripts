@@ -17,14 +17,14 @@ fi
 if [ -f /mnt/shell/global_variable.sh ]; then
         echo "文件检测成功,继续执行......"
 else
-        echo "/mnt/shell/global_variable.sh 文件不存在，退出中......"
+        echo "/mnt/shell/global_variable.sh 文件不存在,请下载全局变量并修改{http://github.2331314.xyz:5550/https://raw.githubusercontent.com/limitrinno/shell_scripts/test/stable/global_variable.sh}，退出中......"
         exit
 fi
 
 if [ -f /mnt/shell/disklist.txt ]; then
 	echo "文件检测成功,继续执行......"
 else
-	echo "/mnt/shell/disklist.txt 文件不存在{请执行get_storage_disklist.sh}，退出中......"
+	echo "/mnt/shell/disklist.txt 文件不存在{请执行bash <(http://github.2331314.xyz:5550/https://raw.githubusercontent.com/limitrinno/shell_scripts/test/stable/get_storage_disklist.sh)}，退出中......"
         exit
 fi
 
