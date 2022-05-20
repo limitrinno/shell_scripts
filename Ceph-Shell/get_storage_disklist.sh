@@ -12,7 +12,7 @@ systemdisk=`df -h | grep -v tmpfs | grep -v mapper | grep /dev/ | sed '2,999d' |
 echo "当前系统的系统盘为:$systemdisk,如不正确，请修改当前目录下的disklist.txt"
 
 #lsblk | awk '{print $1}' | grep -v ceph | grep -v $1 > disklist.txt
-lsblk | awk '{print $1}' | grep -vE "$systemdisk\>|NAME|ceph|nvme|─" > /usr/local/node_exporter/disklist.txt
+lsblk | awk '{print $1}' | grep -vE "$systemdisk\>|NAME|ceph|nvme|─|sr0" > /usr/local/node_exporter/disklist.txt
 #fdisk -l | grep "Disk /dev" | sed s/://g | sed s#/dev/##g | grep -vE "$systemdisk\>|ceph|nvme" | awk '{print $2}'  > /usr/local/node_exporter/disklist.txt
 
 if [ $? -eq 0 ];then
