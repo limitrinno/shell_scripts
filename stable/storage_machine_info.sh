@@ -141,3 +141,6 @@ curl -XPOST --data-binary @/mnt/shell/checkdisk.log http://$szsrv:49091/metrics/
 
 # 清理smartctl处理出来的硬盘信息
 rm -rf /mnt/shell/checkdisk.log
+
+# End
+echo "脚本执行成功，数据已上传"
