@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Pushgateway Server
-hzsrv=`121.196.127.74`
-szsrv=`120.79.15.130`
+hzsrv="121.196.127.74"
+szsrv="120.79.15.130"
 
 # 检查/mnt/下是否存在shell目录
 if [[ -d /mnt/shell ]];then
