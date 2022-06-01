@@ -23,13 +23,8 @@ fi
 source /mnt/shell/global_variable.sh
 
 # 运行时间
-#current=`date "+%Y-%m-%d %H:%M:%S"`
-#timeStamp=`date -d "$current" +%s`
-#将current转换为时间戳，精确到毫秒  
-#currentTimeStamp=$((timeStamp*1000+`date "+%N"`/1000000)) 
-#echo $timeStamp
-#echo $currentTimeStamp
-#server_system_up=`top -b -n 1 | grep 'load' | awk '{print $3}'`
+sysbootuptime=`who -b | grep -o '[0-9].*'`
+server_up_time=`date -d "$sysbootuptime" +%s`
 
 # CPU 指标
 ## 系统当前的总负载
@@ -97,6 +92,7 @@ rm -rf /tmp/push.txt
 
 # 上传服务器
 cat <<EOF | curl --data-binary @- http://$hzsrv:49091/metrics/job/$job_name/instance/$instance_name
+server_up_time $server_up_time
 server_cpu_total_load $server_cpu_total_load
 server_cpu_1min_load $server_cpu_1min_load
 server_cpu_5min_load $server_cpu_5min_load
