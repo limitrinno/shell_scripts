@@ -70,10 +70,10 @@ echo "" > /tmp/push.txt && sed -i '1d' /tmp/push.txt
 i=0
 while ((++i));
 do
-server_df_device=`df | grep -v "tmpfs" | sed '1d' | sed -n "$i"p | awk '{print $1,$2,$4,$6}' | cut -d' ' -f4`
-server_df_mountpoint=`df | grep -v "tmpfs" | sed '1d' | sed -n "$i"p | awk '{print $1,$2,$4,$6}' | cut -d' ' -f1`
-server_df_use=`df | grep -v "tmpfs" | sed '1d' | sed -n "$i"p | awk '{print $1,$2,$4,$5,$6}' | cut -d' ' -f4 | sed 's/%//g'`
-check_null=`df | grep -v "tmpfs" | sed '1d' | sed -n "$i"p | awk '{print $1,$2,$4,$5,$6}' | cut -d' ' -f4`
+server_df_device=`df | grep -vE "tmpfs|snap|loop" | sed '1d' | sed -n "$i"p | awk '{print $1,$2,$4,$6}' | cut -d' ' -f4`
+server_df_mountpoint=`df | grep -vE "tmpfs|snap|loop" | sed '1d' | sed -n "$i"p | awk '{print $1,$2,$4,$6}' | cut -d' ' -f1`
+server_df_use=`df | grep -vE "tmpfs|snap|loop" | sed '1d' | sed -n "$i"p | awk '{print $1,$2,$4,$5,$6}' | cut -d' ' -f4 | sed 's/%//g'`
+check_null=`df | grep -vE "tmpfs|snap|loop" | sed '1d' | sed -n "$i"p | awk '{print $1,$2,$4,$5,$6}' | cut -d' ' -f4`
 if [[ $check_null == "" ]];then
 	break
 fi
