@@ -6,16 +6,16 @@ szsrv="120.79.15.130"
 
 # 检查/mnt/下是否存在shell目录
 if [[ -d /mnt/shell ]];then
-        echo "yes"
+        echo -e "\033[42;37m 脚本运行目录检测成功 \033[0m \n"
 else
-        mkdir -p /mnt/shell
+        sudo mkdir -p /mnt/shell
 fi
 
 # 判断是否有全局文件
 if [ -f /mnt/shell/global_variable.sh ]; then
-        echo "{全局变量}文件检测成功,继续执行......"
+        echo -e "\033[42;37m {全局变量}文件检测成功,继续执行......  \033[0m\n"
 else
-        echo "/mnt/shell/global_variable.sh 文件不存在,请下载全局变量并修改{wget -P /mnt/shell http://github.2331314.xyz:5550/https://raw.githubusercontent.com/limitrinno/shell_scripts/master/stable/global_variable.sh}，退出中......"
+        echo -e "\033[41;37m /mnt/shell/global_variable.sh 文件不存在 \033[0m \n\n\033[31m 请下载全局变量并修改 \033[0m\n\033[42;37m wget -P /mnt/shell http://github.2331314.xyz:5550/https://raw.githubusercontent.com/limitrinno/shell_scripts/master/stable/global_variable.sh \033[0m \n\n \033[31m退出中......\033[0m"
         exit
 fi
 
