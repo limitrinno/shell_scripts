@@ -92,6 +92,8 @@ Power_Cycle_Count=`cat /mnt/shell/smartdisk.tmp | grep "Power_Cycle_Count" | awk
 Power_On_Hours_v=`cat /mnt/shell/smartdisk.tmp | grep "Power_On_Hours" | awk '{print $10}'`
 Total_LBAs_Written_v=`cat /mnt/shell/smartdisk.tmp | grep "Total_LBAs_Written" | awk '{print $10}'`
 Total_LBAs_Read_v=`cat /mnt/shell/smartdisk.tmp | grep "Total_LBAs_Read" | awk '{print $10}'`
+disk_vendor=`cat /mnt/shell/smartdisk.tmp | grep Vendor | cut -d':' -f2 | sed 's/ //g'`
+disk_product=`cat /mnt/shell/smartdisk.tmp | grep Product | cut -d':' -f2 | sed 's/ //g'`
 
 # 判断值是否存在
 if [[ $Total_LBAs_Written_v == "" ]]; then
@@ -116,7 +118,7 @@ if [ $Total_LBAs_Read_expr -eq 0 ]; then
 	Total_LBAs_Read_expr="Null"
 fi
 
-echo "machine_smartctl_info{smartctl_disk='"$line"',disk_health='"$disk_health"',Reallocated_Sector_Ct='"$Reallocated_Sector_Ct"',Spin_Retry_Count='"$Spin_Retry_Count"',Temperature_Celsius='"$Temperature_Celsius"',Start_Stop_Count='"$Start_Stop_Count"',Power_Cycle_Count='"$Power_Cycle_Count"',Power_On_Hours_expr='"$Power_On_Hours_expr"',Total_LBAs_Written_expr='"$Total_LBAs_Written_expr"',Total_LBAs_Read_expr='"$Total_LBAs_Read_expr"'} 0" >> /mnt/shell/checkdisk.log
+echo "machine_smartctl_info{smartctl_disk='"$line"',disk_health='"$disk_health"',Reallocated_Sector_Ct='"$Reallocated_Sector_Ct"',Spin_Retry_Count='"$Spin_Retry_Count"',Temperature_Celsius='"$Temperature_Celsius"',Start_Stop_Count='"$Start_Stop_Count"',Power_Cycle_Count='"$Power_Cycle_Count"',Power_On_Hours_expr='"$Power_On_Hours_expr"',Total_LBAs_Written_expr='"$Total_LBAs_Written_expr"',Total_LBAs_Read_expr='"$Total_LBAs_Read_expr"',disk_vendor='"$disk_vendor"',disk_product='"$disk_product"'} 0" >> /mnt/shell/checkdisk.log
 
 echo "/dev/$line 运行完成！！！"
 done < /mnt/shell/disklist.txt
